@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjx.sportsplatformapi.dao.BallDao"> <!--namespace对应是哪个dao文件，该文件下的操作对应此map文件的sql操作-->
+
+    <!--<if test="" ></if> 这是mybatis的动态 SQL。使用动态 SQL 最常见情景是根据条件包含 where 子句的一部分。比如： SELECT * FROM user <if test="username != null">   WHERE username LIKE  #{username}  </if>这条语句提供了可选的查找文本功能。如果不传入 “username”，那么所有用户信息都会返回；如果传入了 “username” 参数，那么就会对 “username” 一列进行模糊查找并返回对应的结果。-->
+    <!--<select id="getAllBall" resultType="com.wjx.sportsplatformapi.entity.Ball">  &lt;!&ndash;id指的是namespace对应的文件下的某个方法名，resulttype是该方法的返回类型&ndash;&gt;-->
+        <!--SELECT * FROM doubleballstatistics-->
+        <!--<if test="issue != null">-->
+            <!--WHERE issue LIKE  #{issue}-->
+        <!--</if>-->
+    <!--</select>-->
+    <select id="getAllBall" resultType="com.wjx.sportsplatformapi.entity.Ball">
+        SELECT * FROM doubleballstatistics
+        <if test="issue != null">
+            WHERE issue LIKE  #{issue}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+    <select id="getAllBalls" resultType="com.wjx.sportsplatformapi.entity.Ball">
+        SELECT * FROM doubleballstatistics
+    </select>
+    <select id="getBallCounts" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM doubleballstatistics
+        <if test="issue != null">
+            where issue like #{issue}
+        </if>
+    </select>
+    <!--<update id="updateState">-->
+          <!--UPDATE user SET state = #{state} WHERE id = #{id} ;-->
+    <!--</update>-->
+    <insert id="addBall">
+        INSERT INTO doubleballstatistics(issue,red_one,red_two,red_three,red_four,red_five,red_six,blue,draw_prize_date) VALUE(#{issue},#{red_one},#{red_two},#{red_three},#{red_four},#{red_five},#{red_six},#{blue},#{draw_prize_date}) ;
+    </insert>
+    <!--<delete id="deleteUser">-->
+        <!--DELETE FROM user WHERE id = #{id} ;-->
+    <!--</delete>-->
+    <select id="getupdateball" resultType="com.wjx.sportsplatformapi.entity.Ball">
+        SELECT * FROM doubleballstatistics WHERE id=#{id}
+    </select>
+    <update id="editBall">
+          UPDATE doubleballstatistics SET issue = #{issue},red_one = #{red_one},red_two = #{red_two},red_three = #{red_three},red_four = #{red_four},red_five = #{red_five},red_six = #{red_six},blue = #{blue},draw_prize_date = #{draw_prize_date}  WHERE id = #{id} ;
+    </update>
+    <select id="queryBallByIssue" resultType="java.lang.Integer">
+        select count(*)from doubleballstatistics where issue = #{issue}
+    </select>
+    <select id="queryBallByDrawPrizeDate" resultType="java.lang.Integer">
+        select count(*)from doubleballstatistics where draw_prize_date = #{draw_prize_date}
+    </select>
+    <delete id="deleteBall">
+        delete from doubleballstatistics WHERE id = #{id} ;
+    </delete>
+    <insert id="insertBallCalculate">
+        insert into doubleballcalculate(red_one,red_two,red_three,red_four,red_five,red_six,red_seven,red_eight,red_nine,red_ten,red_eleven,red_twelve,red_thirteen,red_fourteen,red_fifteen,red_sixteen,red_seventeen,red_eighteen,red_nineteen,red_twenty,red_twenty_one,red_twenty_two,red_twenty_three,red_twenty_four,red_twenty_five,red_twenty_six,red_twenty_seven,red_twenty_eight,red_twenty_nine,red_thirty,red_thirty_one,red_thirty_two,red_thirty_three,blue_one,blue_two,blue_three,blue_four,blue_five,blue_six,blue_seven,blue_eight,blue_nine,blue_ten,blue_eleven,blue_twelve,blue_thirteen,blue_fourteen,blue_fifteen,blue_sixteen,calculate_date) values(#{red_one},#{red_two},#{red_three},#{red_four},#{red_five},#{red_six},#{red_seven},#{red_eight},#{red_nine},#{red_ten},#{red_eleven},#{red_twelve},#{red_thirteen},#{red_fourteen},#{red_fifteen},#{red_sixteen},#{red_seventeen},#{red_eighteen},#{red_nineteen},#{red_twenty},#{red_twenty_one},#{red_twenty_two},#{red_twenty_three},#{red_twenty_four},#{red_twenty_five},#{red_twenty_six},#{red_twenty_seven},#{red_twenty_eight},#{red_twenty_nine},#{red_thirty},#{red_thirty_one},#{red_thirty_two},#{red_thirty_three},#{blue_one},#{blue_two},#{blue_three},#{blue_four},#{blue_five},#{blue_six},#{blue_seven},#{blue_eight},#{blue_nine},#{blue_ten},#{blue_eleven},#{blue_twelve},#{blue_thirteen},#{blue_fourteen},#{blue_fifteen},#{blue_sixteen},#{calculate_date})
+    </insert>
+    <select id="findLastBallCalculate" resultType="com.wjx.sportsplatformapi.entity.BallStatistics">
+        select * from doubleballcalculate order by id desc limit 1 ;
+    </select>
+</mapper>

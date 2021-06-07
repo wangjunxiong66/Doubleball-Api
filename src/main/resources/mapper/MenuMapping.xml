@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjx.sportsplatformapi.dao.MenuDao"> <!--namespace对应是哪个dao文件，该文件下的操作对应此map文件的sql操作-->
+    <!--关系映射，一个映射实体。<resultMap>是Maybatis的结果集封装。id是该封装规则的唯一标识。type:封装出来的类型，可以是jdk自带的，比如Map，应该可以是自定义的，比如Employee。-->
+    <resultMap id="menuMap" type="com.wjx.sportsplatformapi.entity.MainMenu">
+        <!-- id用来标识出对象的唯一性，比如用表的主键。column指定数据库字段名或者其别名。property指定javaBean的属性名 -->
+        <id column="id" property="id"></id>
+        <!--    <result> 是指：非主键的映射规则。column指定数据库字段名或者其别名。property指定javaBean的属性名  -->
+        <result column="title" property="title"></result>
+        <result column="path" property="path"></result>
+        <!--collection是负责处理多行的结果集，此处的property指的是结果集封装中封装的javaBean集合的名称，ofType指定结果集封装中封装的javaBean的名字-->
+        <collection property="sList" ofType="com.wjx.sportsplatformapi.entity.SubMenu">
+            <!-- id用来标识出对象的唯一性，比如用表的主键，column指定数据库字段名或者其别名，property指定javaBean的属性名-->
+            <id column="sid" property="id"></id>
+            <!--    <result> 是指：非主键的映射规则。column指定数据库字段名或者其别名。property指定javaBean的属性名  -->
+            <result column="stitle" property="title"></result>
+            <result column="spath" property="path"></result>
+        </collection>
+    </resultMap>
+    <!--因为查询出来的是一个一对多的数据，所以不能直接使用，需要做一个关系映射，所以在上面做一个映射实体-->
+    <select id="getMenus" resultMap="menuMap">  <!--id指的是namespace对应的文件下的某个方法名，resulttype是该方法的返回类型-->
+        SELECT mm.*,sm.id as sid,sm.title as stitle,sm.path as spath FROM mainmenu mm,submenu sm WHERE mm.id = sm.mid ;
+    </select>
+</mapper>

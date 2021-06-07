@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjx.sportsplatformapi.dao.UserDao"> <!--namespace对应是哪个dao文件，该文件下的操作对应此map文件的sql操作-->
+    <select id="getUserByMessage" resultType="com.wjx.sportsplatformapi.entity.User">  <!--id指的是namespace对应的文件下的某个方法名，resulttype是该方法的返回类型-->
+        SELECT * FROM user WHERE username=#{username} AND password=#{password} AND state=1
+    </select>
+    <!--<if test="" ></if> 这是mybatis的动态 SQL。使用动态 SQL 最常见情景是根据条件包含 where 子句的一部分。比如： SELECT * FROM user <if test="username != null">   WHERE username LIKE  #{username}  </if>这条语句提供了可选的查找文本功能。如果不传入 “username”，那么所有用户信息都会返回；如果传入了 “username” 参数，那么就会对 “username” 一列进行模糊查找并返回对应的结果。-->
+    <select id="getAllUser" resultType="com.wjx.sportsplatformapi.entity.User">
+        SELECT * FROM user
+        <if test="username != null">
+            WHERE username LIKE  #{username}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+    <select id="getUserCounts" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user
+        <if test="username != null">
+            WHERE username LIKE  #{username}
+        </if>
+    </select>
+    <update id="updateState">
+          UPDATE user SET state = #{state} WHERE id = #{id} ;
+    </update>
+    <insert id="addUser">
+        INSERT INTO user(username,password,email,role,state) VALUE(#{username},#{password},#{email},#{role},#{state}) ;
+    </insert>
+    <delete id="deleteUser">
+        DELETE FROM user WHERE id = #{id} ;
+    </delete>
+    <select id="getupdateuser" resultType="com.wjx.sportsplatformapi.entity.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+    <update id="editUser">
+          UPDATE user SET username = #{username},password = #{password},email = #{email} WHERE id = #{id} ;
+    </update>
+
+
+</mapper>
