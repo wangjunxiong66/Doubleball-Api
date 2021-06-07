@@ -24,7 +24,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestBody User user){
+        System.out.println("进入login方法，传入的参数为："+user);
         String flag = "error";
+        System.out.println("查询的参数为："+user.getUsername()+"  "+user.getPassword());
         User us = userDao.getUserByMessage(user.getUsername(),user.getPassword()) ;
         HashMap<String,Object> res = new HashMap<>();
         if (us!=null){
