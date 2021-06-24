@@ -11,6 +11,7 @@ public class Poem {
     public String title ;
     public String author ;
     public String dynasty ;
+    public String category;
     public String content ;
     public String comment ;
     public String create_time ;
@@ -19,10 +20,11 @@ public class Poem {
     public Poem() {
     }
 
-    public Poem(String title, String author, String dynasty, String content, String comment, String create_time, String update_time) {
+    public Poem(String title, String author, String dynasty, String category, String content, String comment, String create_time, String update_time) {
         this.title = title;
         this.author = author;
         this.dynasty = dynasty;
+        this.category = category;
         this.content = content;
         this.comment = comment;
         this.create_time = create_time;
@@ -59,6 +61,14 @@ public class Poem {
 
     public void setDynasty(String dynasty) {
         this.dynasty = dynasty;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getContent() {
@@ -100,6 +110,7 @@ public class Poem {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", dynasty='" + dynasty + '\'' +
+                ", category='" + category + '\'' +
                 ", content='" + content + '\'' +
                 ", comment='" + comment + '\'' +
                 ", create_time='" + create_time + '\'' +

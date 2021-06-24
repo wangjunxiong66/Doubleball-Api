@@ -4,8 +4,17 @@
 <mapper namespace="com.wjx.sportsplatformapi.dao.PoemDao"> <!--namespace对应是哪个dao文件，该文件下的操作对应此map文件的sql操作-->
 
     <insert id="addPoem">
-        insert into poem(title,author,dynasty,content,comment,create_time,update_time) values(#{title},#{author},#{dynasty},#{content},#{comment},#{create_time},#{update_time}) ;
+        insert into poem(title,author,dynasty,category,content,comment,create_time,update_time) values(#{title},#{author},#{dynasty},#{category},#{content},#{comment},#{create_time},#{update_time}) ;
     </insert>
-
+    <select id="getPoemCounts" resultType="java.lang.Integer">
+        select count(title) from poem ;
+    </select>
+    <select id="getAllPoem" resultType="com.wjx.sportsplatformapi.entity.Poem">
+        SELECT * FROM poem
+        <if test="title != null">
+            WHERE title LIKE  #{title}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
 
 </mapper>

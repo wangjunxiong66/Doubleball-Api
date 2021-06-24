@@ -1,7 +1,10 @@
 package com.wjx.sportsplatformapi.dao;
 
 import com.wjx.sportsplatformapi.entity.Poem;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author wjx
@@ -11,5 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PoemDao {
     public int addPoem(Poem poem) ;
+    public int getPoemCounts(@Param("title") String title);
+    public List<Poem> getAllPoem(@Param("title") String title, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
 
 }

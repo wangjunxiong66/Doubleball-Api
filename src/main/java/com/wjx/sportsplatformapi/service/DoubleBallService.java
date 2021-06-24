@@ -182,11 +182,12 @@ public class DoubleBallService {
         blue_fifteen=ballStatistics.getBlue_fifteen();
         blue_sixteen=ballStatistics.getBlue_sixteen();
 
-        //  这种获得时间的方式只能是12小时制的
+        //  这种获得时间的方式只能是12小时制的的时间格式
 //        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //        String calculate_date = simpleDateFormat.format(new Date());
 //        System.out.println("calculate_date  是    "+calculate_date);
 
+        //  此方式可以获得24小时制的时间格式
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime date = LocalDateTime.now();
         String calculate_date=dateTimeFormatter.format(date);
