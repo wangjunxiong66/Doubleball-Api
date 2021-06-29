@@ -14,7 +14,10 @@ import java.util.List;
 @Repository
 public interface PoemDao {
     public int addPoem(Poem poem) ;
-    public int getPoemCounts(@Param("title") String title);
-    public List<Poem> getAllPoem(@Param("title") String title, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+    public int getPoemCounts(@Param("content") String content);
+    public List<Poem> getAllPoem(@Param("content") String content, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+    public Poem getupdatepoem(int id);
+    public int editPoem(Poem poem) ;
+    public int deletePoem(int id) ;
 
 }
