@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
+@RequestMapping("/ballapi")
 public class BallController {
 
     @Autowired

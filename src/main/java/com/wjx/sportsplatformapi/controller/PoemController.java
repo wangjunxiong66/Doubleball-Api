@@ -26,6 +26,7 @@ import java.util.List;
  * @date 2021/6/21 下午2:42
  */
 @RestController
+@RequestMapping("/poemapi")
 public class PoemController {
 
     @Autowired
