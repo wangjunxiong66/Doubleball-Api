@@ -32,6 +32,22 @@ public class PoemController {
     PoemDao poemDao;
 
     //  查询所有诗歌信息
+//    @RequestMapping("/allpoem")
+//    public String getPoemList(PoemQueryInfo poemQueryInfo){
+//        System.out.println("进入allpoem方法，查询的诗歌内容是: "+poemQueryInfo);
+//        //  获取诗歌数量
+//        int numbers = poemDao.getPoemCounts("%"+poemQueryInfo.getContent()+"%") ;
+//        //  获取当前页记录的起始序号
+//        int pageStart = (poemQueryInfo.getPageNum()-1)*poemQueryInfo.getPageSize();
+//        //  获取当前页诗歌的所有信息
+//        List<Poem> poems = poemDao.getAllPoem("%"+poemQueryInfo.getContent()+"%",pageStart,poemQueryInfo.getPageSize()) ;
+//        HashMap<String,Object> res = new HashMap<>();
+//        res.put("numbers",numbers);
+//        res.put("data",poems);
+//        String res_string = JSON.toJSONString(res);
+//        System.out.println("获取的结果是: "+res_string);
+//        return res_string;
+//    }
     @RequestMapping("/allpoem")
     public String getPoemList(PoemQueryInfo poemQueryInfo){
         System.out.println("进入allpoem方法，查询的诗歌内容是: "+poemQueryInfo);
@@ -40,7 +56,9 @@ public class PoemController {
         //  获取当前页记录的起始序号
         int pageStart = (poemQueryInfo.getPageNum()-1)*poemQueryInfo.getPageSize();
         //  获取当前页诗歌的所有信息
-        List<Poem> poems = poemDao.getAllPoem("%"+poemQueryInfo.getContent()+"%",pageStart,poemQueryInfo.getPageSize()) ;
+        poemQueryInfo.setPageIndex(pageStart);
+//        List<Poem> poems = poemDao.getAllPoem("%"+poemQueryInfo.getContent()+"%",pageStart,poemQueryInfo.getPageSize()) ;
+        List<Poem> poems = poemDao.getAllPoem(poemQueryInfo) ;
         HashMap<String,Object> res = new HashMap<>();
         res.put("numbers",numbers);
         res.put("data",poems);

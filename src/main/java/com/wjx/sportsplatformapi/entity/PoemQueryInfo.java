@@ -16,13 +16,14 @@ public class PoemQueryInfo {
     public String comment;       //  注释
     public String create_time;       // 创建时间
     public String update_time;       //  更新时间
-    private int pageNum = 1 ;     //  当前页
-    private int pageSize = 1 ;  //  每页最大数
+    private int pageNum  ;     //  当前页
+    private int pageSize  ;  //  每页最大数
+    private int pageStart  ;  //  每页起始数量
 
     public PoemQueryInfo() {
     }
 
-    public PoemQueryInfo(String title, String author, String dynasty, String category, String content, String comment, String create_time, String update_time, int pageNum, int pageSize) {
+    public PoemQueryInfo(String title, String author, String dynasty, String category, String content, String comment, String create_time, String update_time, int pageNum, int pageSize, int pageStart) {
         this.title = title;
         this.author = author;
         this.dynasty = dynasty;
@@ -33,6 +34,7 @@ public class PoemQueryInfo {
         this.update_time = update_time;
         this.pageNum = pageNum;
         this.pageSize = pageSize;
+        this.pageStart = pageStart;
     }
 
     public int getId() {
@@ -123,6 +125,14 @@ public class PoemQueryInfo {
         this.pageSize = pageSize;
     }
 
+    public int getPageStart() {
+        return pageStart;
+    }
+
+    public void setPageIndex(int pageStart) {
+        this.pageStart = pageStart;
+    }
+
     @Override
     public String toString() {
         return "PoemQueryInfo{" +
@@ -137,6 +147,7 @@ public class PoemQueryInfo {
                 ", update_time='" + update_time + '\'' +
                 ", pageNum=" + pageNum +
                 ", pageSize=" + pageSize +
+                ", pageStart=" + pageStart +
                 '}';
     }
 }

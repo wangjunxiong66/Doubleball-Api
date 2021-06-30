@@ -9,11 +9,33 @@
     <select id="getPoemCounts" resultType="java.lang.Integer">
         select count(content) from poem ;
     </select>
-    <select id="getAllPoem" resultType="com.wjx.sportsplatformapi.entity.Poem">
+    <!--<select id="getAllPoem" resultType="com.wjx.sportsplatformapi.entity.Poem">-->
+        <!--SELECT * FROM poem-->
+        <!--<if test="content != null">-->
+            <!--WHERE content LIKE  #{content}-->
+        <!--</if>-->
+        <!--LIMIT #{pageStart},#{pageSize}-->
+    <!--</select>-->
+    <select id="getAllPoem" parameterType="com.wjx.sportsplatformapi.entity.PoemQueryInfo" resultType="com.wjx.sportsplatformapi.entity.Poem">
         SELECT * FROM poem
-        <if test="content != null">
-            WHERE content LIKE  #{content}
-        </if>
+        <where>
+            <!--<if test="title != null "> title like #{title}</if>-->
+            <!--<if test="author != null "> and author like #{author}</if>-->
+            <!--<if test="dynasty != null "> and dynasty like #{dynasty}</if>-->
+            <!--<if test="category != null "> and category like #{category} </if>-->
+            <!--<if test="content != null "> and content like #{content} </if>-->
+            <!--<if test="comment != null ">  and comment like #{comment}</if>-->
+            <!--<if test="create_time != null "> and create_time = #{create_time}</if>-->
+            <!--<if test="update_time != null "> and update_time = #{update_time}</if>-->
+            <if test="title != null "> title like "%"#{title}"%"</if>
+            <if test="author != null "> and author like "%"#{author}"%"</if>
+            <if test="dynasty != null "> and dynasty like "%"#{dynasty}"%"</if>
+            <if test="category != null "> and category like "%"#{category}"%" </if>
+            <if test="content != null "> and content like "%"#{content}"%" </if>
+            <if test="comment != null ">  and comment like "%"#{comment}"%"</if>
+            <if test="create_time != null "> and create_time = #{create_time}</if>
+            <if test="update_time != null "> and update_time = #{update_time}</if>
+        </where>
         LIMIT #{pageStart},#{pageSize}
     </select>
     <select id="getupdatepoem" resultType="com.wjx.sportsplatformapi.entity.Poem">
