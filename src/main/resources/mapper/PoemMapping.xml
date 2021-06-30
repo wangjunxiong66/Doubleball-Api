@@ -6,8 +6,21 @@
     <insert id="addPoem">
         insert into poem(title,author,dynasty,category,content,comment,create_time,update_time) values(#{title},#{author},#{dynasty},#{category},#{content},#{comment},#{create_time},#{update_time}) ;
     </insert>
+    <!--<select id="getPoemCounts" resultType="java.lang.Integer">-->
+        <!--select count(content) from poem ;-->
+    <!--</select>-->
     <select id="getPoemCounts" resultType="java.lang.Integer">
-        select count(content) from poem ;
+        select count(content) from poem
+        <where>
+            <if test="title != null "> title like "%"#{title}"%"</if>
+            <if test="author != null "> and author like "%"#{author}"%"</if>
+            <if test="dynasty != null "> and dynasty like "%"#{dynasty}"%"</if>
+            <if test="category != null "> and category like "%"#{category}"%" </if>
+            <if test="content != null "> and content like "%"#{content}"%" </if>
+            <if test="comment != null ">  and comment like "%"#{comment}"%"</if>
+            <if test="create_time != null "> and create_time = #{create_time}</if>
+            <if test="update_time != null "> and update_time = #{update_time}</if>
+        </where>
     </select>
     <!--<select id="getAllPoem" resultType="com.wjx.sportsplatformapi.entity.Poem">-->
         <!--SELECT * FROM poem-->
@@ -19,6 +32,7 @@
     <select id="getAllPoem" parameterType="com.wjx.sportsplatformapi.entity.PoemQueryInfo" resultType="com.wjx.sportsplatformapi.entity.Poem">
         SELECT * FROM poem
         <where>
+            <!-- 下面是精确搜索 -->
             <!--<if test="title != null "> title like #{title}</if>-->
             <!--<if test="author != null "> and author like #{author}</if>-->
             <!--<if test="dynasty != null "> and dynasty like #{dynasty}</if>-->
@@ -27,6 +41,7 @@
             <!--<if test="comment != null ">  and comment like #{comment}</if>-->
             <!--<if test="create_time != null "> and create_time = #{create_time}</if>-->
             <!--<if test="update_time != null "> and update_time = #{update_time}</if>-->
+            <!-- 下面是模糊搜索 -->
             <if test="title != null "> title like "%"#{title}"%"</if>
             <if test="author != null "> and author like "%"#{author}"%"</if>
             <if test="dynasty != null "> and dynasty like "%"#{dynasty}"%"</if>

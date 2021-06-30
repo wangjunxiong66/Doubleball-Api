@@ -52,7 +52,8 @@ public class PoemController {
     public String getPoemList(PoemQueryInfo poemQueryInfo){
         System.out.println("进入allpoem方法，查询的诗歌内容是: "+poemQueryInfo);
         //  获取诗歌数量
-        int numbers = poemDao.getPoemCounts("%"+poemQueryInfo.getContent()+"%") ;
+//        int numbers = poemDao.getPoemCounts("%"+poemQueryInfo.getContent()+"%") ;
+        int numbers = poemDao.getPoemCounts(poemQueryInfo) ;
         //  获取当前页记录的起始序号
         int pageStart = (poemQueryInfo.getPageNum()-1)*poemQueryInfo.getPageSize();
         //  获取当前页诗歌的所有信息
