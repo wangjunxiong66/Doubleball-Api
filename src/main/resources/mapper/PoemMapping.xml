@@ -6,9 +6,6 @@
     <insert id="addPoem">
         insert into poem(title,author,dynasty,category,content,comment,create_time,update_time) values(#{title},#{author},#{dynasty},#{category},#{content},#{comment},#{create_time},#{update_time}) ;
     </insert>
-    <!--<select id="getPoemCounts" resultType="java.lang.Integer">-->
-        <!--select count(content) from poem ;-->
-    <!--</select>-->
     <select id="getPoemCounts" resultType="java.lang.Integer">
         select count(content) from poem
         <where>
@@ -22,13 +19,6 @@
             <if test="update_time != null "> and update_time = #{update_time}</if>
         </where>
     </select>
-    <!--<select id="getAllPoem" resultType="com.wjx.sportsplatformapi.entity.Poem">-->
-        <!--SELECT * FROM poem-->
-        <!--<if test="content != null">-->
-            <!--WHERE content LIKE  #{content}-->
-        <!--</if>-->
-        <!--LIMIT #{pageStart},#{pageSize}-->
-    <!--</select>-->
     <select id="getAllPoem" parameterType="com.wjx.sportsplatformapi.entity.PoemQueryInfo" resultType="com.wjx.sportsplatformapi.entity.Poem">
         SELECT * FROM poem
         <where>
