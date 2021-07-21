@@ -162,6 +162,117 @@ public class BallController {
         }
         System.out.println("红球是："+redball[0]+" "+redball[1]+" "+redball[2]+" "+redball[3]+" "+redball[4]+" "+redball[5]+"    蓝球是："+blueball);
 
+        // 该部分代码只在日志中输出
+        System.out.println("==========  该部分代码只在日志中输出，不返回数据  ==========");
+        int[] blueball1=new int[5];
+        Random ranblue1 = new Random() ;
+        Set<Integer> ranblueset =new TreeSet<Integer>() ;
+        for (int j=0;j<16;j++){
+            if (j>10){
+                int size = ranblueset.size();
+                while(ranblueset.size()<(size+1)){
+                    ranblueset.add(ranblue1.nextInt(16)+1);
+                }
+            }
+        }
+        Iterator<Integer> integerIterator1 = ranblueset.iterator();
+        int ii=0;
+        while(integerIterator1.hasNext()){
+            blueball1[ii]=integerIterator1.next();
+            ii++;
+        }
+//        int ii=0;
+//        while (ranblueset.size()<16){
+//            ranblueset.add(ranblue1.nextInt(16)+1);
+//        }
+//        Iterator<Integer> integerIterator1 = ranblueset.iterator();
+//        while(integerIterator1.hasNext()){
+//            blueball1[ii]=integerIterator1.next();
+//            ii++;
+//        }
+        int[] redball1=new int[30];
+        Random ranred1 = new Random() ;
+        Set<Integer> ran1=new TreeSet<Integer>() ;
+        Set<Integer> ran2=new TreeSet<Integer>() ;
+        Set<Integer> ran3=new TreeSet<Integer>() ;
+        Set<Integer> ran4=new TreeSet<Integer>() ;
+        Set<Integer> ran5=new TreeSet<Integer>() ;
+        for (int j=0;j<33;j++){
+            if ((j>=3)&&(j<=8)){
+                int size = ran1.size();
+                while(ran1.size()<(size+1)){
+                    ran1.add(ranred1.nextInt(33)+1);
+                }
+            }
+            if ((j>=9)&&(j<=14)){
+                int size = ran2.size();
+                while(ran2.size()<(size+1)){
+                    ran2.add(ranred1.nextInt(33)+1);
+                }
+            }
+            if ((j>=15)&&(j<=20)){
+                int size = ran3.size();
+                while(ran3.size()<(size+1)){
+                    ran3.add(ranred1.nextInt(33)+1);
+                }
+            }
+            if ((j>=21)&&(j<=26)){
+                int size = ran4.size();
+                while(ran4.size()<(size+1)){
+                    ran4.add(ranred1.nextInt(33)+1);
+                }
+            }
+            if ((j>=27)&&(j<=32)){
+                int size = ran5.size();
+                while(ran5.size()<(size+1)){
+                    ran5.add(ranred1.nextInt(33)+1);
+                }
+            }
+        }
+        Iterator<Integer> integerIteratorran1 = ran1.iterator();
+        Iterator<Integer> integerIteratorran2 = ran2.iterator();
+        Iterator<Integer> integerIteratorran3 = ran3.iterator();
+        Iterator<Integer> integerIteratorran4 = ran4.iterator();
+        Iterator<Integer> integerIteratorran5 = ran5.iterator();
+        int i1=0,i2=6,i3=12,i4=18,i5=24;
+        while(integerIteratorran1.hasNext()){
+            redball1[i1]=integerIteratorran1.next();
+            i1++;
+        }
+        while(integerIteratorran2.hasNext()){
+            redball1[i2]=integerIteratorran2.next();
+            i2++;
+        }
+        while(integerIteratorran3.hasNext()){
+            redball1[i3]=integerIteratorran3.next();
+            i3++;
+        }
+        while(integerIteratorran4.hasNext()){
+            redball1[i4]=integerIteratorran4.next();
+            i4++;
+        }
+        while(integerIteratorran5.hasNext()){
+            redball1[i5]=integerIteratorran5.next();
+            i5++;
+        }
+//        int iii=0;
+//        while (ran1.size()<33){
+//            ran1.add(ranred1.nextInt(33)+1);
+//        }
+//        Iterator<Integer> integerIterator2 = ran1.iterator();
+//        while(integerIterator2.hasNext()){
+//            redball1[iii]=integerIterator2.next();
+//            iii++;
+//        }
+//        System.out.println("机选红球是："+redball1[0]+" "+redball1[1]+" "+redball1[2]+" "+redball1[3]+" "+redball1[4]+" "+redball1[5]+" "+redball1[6]+" "+redball1[7]+" "+redball1[8]+" "+redball1[9]+" "+redball1[10]+" "+redball1[11]+" "+redball1[12]+" "+redball1[13]+" "+redball1[14]+" "+redball1[15]+" "+redball1[16]+" "+redball1[17]+" "+redball1[18]+" "+redball1[19]+" "+redball1[20]+" "+redball1[21]+" "+redball1[22]+" "+redball1[23]+" "+redball1[24]+" "+redball1[25]+" "+redball1[26]+" "+redball1[27]+" "+redball1[28]+" "+redball1[29]+" "+redball1[30]+" "+redball1[31]+" "+redball1[32]+" "+"    蓝球是："+blueball1[0]+" "+blueball1[1]+" "+blueball1[2]+" "+blueball1[3]+" "+blueball1[4]+" "+blueball1[5]+" "+blueball1[6]+" "+blueball1[7]+" "+blueball1[8]+" "+blueball1[9]+" "+blueball1[10]+" "+blueball1[11]+" "+blueball1[12]+" "+blueball1[13]+" "+blueball1[14]+" "+blueball1[15]);
+        System.out.println("机选蓝球是："+blueball1[0]+" "+blueball1[1]+" "+blueball1[2]+" "+blueball1[3]+" "+blueball1[4]);
+        System.out.println("机选红球是："+redball1[0]+" "+redball1[1]+" "+redball1[2]+" "+redball1[3]+" "+redball1[4]+" "+redball1[5]);
+        System.out.println("机选红球是："+redball1[6]+" "+redball1[7]+" "+redball1[8]+" "+redball1[9]+" "+redball1[10]+" "+redball1[11]);
+        System.out.println("机选红球是："+redball1[12]+" "+redball1[13]+" "+redball1[14]+" "+redball1[15]+" "+redball1[16]+" "+redball1[17]);
+        System.out.println("机选红球是："+redball1[18]+" "+redball1[19]+" "+redball1[20]+" "+redball1[21]+" "+redball1[22]+" "+redball1[23]);
+        System.out.println("机选红球是："+redball1[24]+" "+redball1[25]+" "+redball1[26]+" "+redball1[27]+" "+redball1[28]+" "+redball1[29]);
+        System.out.println("==========  该部分代码只在日志中输出，不返回数据  ==========");
+
         Ball ball = new Ball();
         ball.setBlue(blueball);
         ball.setRed_one(redball[0]);
