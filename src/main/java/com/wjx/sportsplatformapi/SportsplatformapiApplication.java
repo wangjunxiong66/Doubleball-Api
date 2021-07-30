@@ -1,6 +1,7 @@
 package com.wjx.sportsplatformapi;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,7 +17,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SportsplatformapiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SportsplatformapiApplication.class, args);
+//		SpringApplication.run(SportsplatformapiApplication.class, args);
+		//  关闭启动时显示banner，如下设置
+		SpringApplication application = new SpringApplication(SportsplatformapiApplication.class);
+		application.setBannerMode(Banner.Mode.OFF);
+		application.run(args);
 	}
 
 }
