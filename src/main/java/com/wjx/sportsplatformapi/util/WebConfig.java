@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry){
-        //设置允许跨域的路径，可以任意配置，可以具体到直接请求路径。
+        //设置允许跨域的路径，可以任意配置，可以具体到直接请求路径，例如("/**")、("/book/**")。
         corsRegistry.addMapping("/**")
                 // 请求来源，允许所有的请求域名访问我们的跨域资源，可以固定单条或者多条内容，可以指定IP地址和端口，也可以指定域名，
                 // 如 allowedOrigins("http://192.168.0.0:8080","http://192.168.0.1:8081") ，或者 allowedOrigins("http://www.baidu.com")，只有百度可以访问我们的跨域资源。
