@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjx.sportsplatformapi.dao.ExcelDao">
+
+    <sql id="selectProductInfo">
+        select id, supplier_sn, product_name, brand_name, product_code, first_category_name, secondary_category_name, third_category_name, supplier_spu_code, supplier_sku_code, spu_code, sku_code, product_spec, expiry_time, pack_unit, box_quantity, jd_price, jd_page_url, tmall_price, tmall_page_url, other_refer_price, selling_price, tax_cost_price, cost_price, tax_rate, stock, sales_desc, submit_time, supplier_invoice_type, not_delivery_range, supplier_settlement_price, shop_cost_price_base, memo1, memo2, memo3, memo4, memo5, create_time, update_time, first_category_id, secondary_category_id, third_category_id, refer_cost_price_base, is_uniform_price, refund_address, is_putaway_info_complete, putaway_enable, delivery_cycle, version, core_shop_putaway_status, remark, start_time, end_time, auth_state from product_info
+    </sql>
+
+    <select id="getProductInfoByProductCode" parameterType="String" resultType="com.wjx.sportsplatformapi.entity.ProductInfo">
+        <include refid="selectProductInfo"/>
+        where product_code = #{product_code}
+    </select>
+
+</mapper>
