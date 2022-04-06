@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS `user` ;
 CREATE TABLE `user` (
   `id` int(24) NOT NULL AUTO_INCREMENT COMMENT '用户ID，主键',
   `username` varchar(255) NOT NULL COMMENT '用户姓名',
@@ -35,7 +36,7 @@ insert into `sportsplatform`.`user` ( `username`, `password`, `email`, `role`, `
 insert into `sportsplatform`.`user` ( `username`, `password`, `email`, `role`, `state`) values ( '22221', '1111111', '2221@111111.com', '普通用户', '0');
 
 
-
+DROP TABLE IF EXISTS `submenu` ;
 CREATE TABLE `submenu` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL COMMENT '子菜单名称',
@@ -59,7 +60,7 @@ insert into `sportsplatform`.`submenu` ( `title`, `path`, `mid`) values ( '双�
 insert into `sportsplatform`.`submenu` ( `title`, `path`, `mid`) values ( '小工具', '/alltools', '400');
 
 
-
+DROP TABLE IF EXISTS `poem` ;
 CREATE TABLE `poem` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `title` varchar(50) NOT NULL COMMENT '名称',
@@ -110,7 +111,7 @@ insert into `sportsplatform`.`poem` ( `title`, `author`, `dynasty`, `category`, 
 
 
 
-
+DROP TABLE IF EXISTS `mainmenu` ;
 CREATE TABLE `mainmenu` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL COMMENT '菜单名称',
@@ -125,7 +126,7 @@ insert into `sportsplatform`.`mainmenu` ( `title`, `path`) values ( '工具', '/
 
 
 
-
+DROP TABLE IF EXISTS `doubleballstatistics` ;
 CREATE TABLE `doubleballstatistics` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `issue` int(10) unsigned NOT NULL COMMENT '期限id',
@@ -2978,7 +2979,7 @@ insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_t
 
 
 
-
+DROP TABLE IF EXISTS `doubleballcalculate` ;
 CREATE TABLE `doubleballcalculate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `red_one` int(10) NOT NULL COMMENT '红球1',
