@@ -1,5 +1,6 @@
 package com.wjx.sportsplatformapi.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.wjx.sportsplatformapi.dao.ExcelDao;
 import com.wjx.sportsplatformapi.entity.GoodsOnSale;
 import com.wjx.sportsplatformapi.entity.ProductInfo;
@@ -7,12 +8,11 @@ import com.wjx.sportsplatformapi.util.FileUtil;
 import com.wjx.sportsplatformapi.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/excelOP")
@@ -21,8 +21,20 @@ public class ExcelOperationController {
     @Autowired
     ExcelDao excelDao;
 
+    @PostMapping("/writeto")
+    public String tableTo(@RequestBody GoodsOnSale goodsOnSale){
+        System.out.println("goodsOnSale 信息是  "+goodsOnSale.toString());
+        HashMap<String,Object> res = new HashMap<>();
+        String  code = "OK";
+        res.put("code",code);
+        String res_json = JSON.toJSONString(res);
+        System.out.println("res_json 是 "+res_json);
+        return res_json;
+
+    }
+
     @GetMapping("/writetoexcel")
-    public void TableToExcel() {
+    public void tableToExcel() {
 
         System.out.println("进入 controller -- TableToExcel() 方法");
         String productcode = "0002-007099-02";

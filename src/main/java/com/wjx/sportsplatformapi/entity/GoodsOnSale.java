@@ -2,13 +2,14 @@ package com.wjx.sportsplatformapi.entity;
 
 public class GoodsOnSale {
 
-    //  设置上架商品基本信息
+    //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
     //  店铺ID
     public int shop_id ;
     //  规格类型
     public String spec_type ;
     //  上架用序号
     public String issue ;
+    //  基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息
     //  商品类型
     public String product_type;
     //  商品名称
@@ -29,6 +30,7 @@ public class GoodsOnSale {
     public String group ;
     //  商品支持
     public String label ;
+    //  价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存
     //  商品规格
     public String good_specification ;
     //  礼包内商品编码
@@ -59,12 +61,14 @@ public class GoodsOnSale {
     public int virtual_sales ;
     //  商品详情显示销量，显示或隐藏
     public String sales_hide ;
+    //  物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置
     //  物流支持，快递发货、同城配送、上门自提
     public String dispatch_mode ;
     //  快递运费，“统一运费”或者“运费模板”
     public String express_price ;
     //  运费模板，取自数据库
     public String express_template ;
+    //  其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置
     //  定时下架
     public String auto_warehouse_time ;
     //  状态，上架售卖、上架隐藏、定时上架、放置仓库
@@ -81,6 +85,7 @@ public class GoodsOnSale {
     public String buy_authority ;
     //  参与会员权益，会员卡、会员价、会员等级折扣
     public String join_member_discount ;
+    //  商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情
     //  推广图文件名
     public String promotion_diagram_name ;
     //  推广图链接
@@ -93,6 +98,7 @@ public class GoodsOnSale {
     public String authorize_diagram_name ;
     //  公用图文件名
     public String common_diagram_name ;
+    //  积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置
     //  活动名称
     public String activity_name ;
     //  活动开始时间
@@ -101,6 +107,7 @@ public class GoodsOnSale {
     public String activity_end_time ;
     //  活动渠道
     public String activity_channel ;
+    //  规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置
     //  规则1活动对象，全部会员、会员等级、会员标签
     public String activity_object ;
     //  规则1会员等级
