@@ -1,5 +1,6 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @version 1.0
  * @date 2020/10/27 下午3:46
  */
-public class MainMenu {
+public class MainMenu implements Serializable {
 
     private int id;
     private String title;

@@ -1,5 +1,6 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * @date 2021/6/4 下午3:54
  *  这是双色球统计记录的细化拆分
  */
-public class BallStatisticsDivide {
+public class BallStatisticsDivide implements Serializable {
     public List<BallNameValue> redballs;
     public List<BallNameValue> blueballs;
     public int[] redball;

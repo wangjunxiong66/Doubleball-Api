@@ -1,12 +1,14 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2021/6/3 下午3:32
  * 这是双色球统计记录
  */
-public class BallStatistics {
+public class BallStatistics implements Serializable {
     public int id;
     public int red_one ;
     public int red_two ;

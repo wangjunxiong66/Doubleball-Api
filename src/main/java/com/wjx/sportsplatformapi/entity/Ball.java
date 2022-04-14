@@ -1,12 +1,14 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2021/5/18 下午2:40
  * 这是双色球记录
  */
-public class Ball {
+public class Ball implements Serializable {
 
     public int id ;
     public int issue ;

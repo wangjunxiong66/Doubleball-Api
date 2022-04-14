@@ -1,6 +1,8 @@
 package com.wjx.sportsplatformapi.entity;
 
-public class ProductInfo {
+import java.io.Serializable;
+
+public class ProductInfo implements Serializable {
 
     public int id;
     public String supplier_sn;

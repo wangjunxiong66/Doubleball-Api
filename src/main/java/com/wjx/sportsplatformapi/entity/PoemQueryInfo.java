@@ -1,11 +1,13 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2021/6/27 上午11:28
  */
-public class PoemQueryInfo {
+public class PoemQueryInfo implements Serializable {
 
     public int id;
     public String title;        //  诗歌名称

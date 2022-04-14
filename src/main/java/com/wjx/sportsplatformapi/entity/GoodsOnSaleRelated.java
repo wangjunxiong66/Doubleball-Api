@@ -1,10 +1,10 @@
 package com.wjx.sportsplatformapi.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.List;
 
-// 商品上架信息
-public class GoodsOnSale implements Serializable {
+// 进入Excel操作页面时初始化商品上架初始化信息
+public class GoodsOnSaleRelated implements Serializable {
 
     //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
     //  店铺ID
@@ -25,16 +25,15 @@ public class GoodsOnSale implements Serializable {
     //  商品轮播图张数
     public int carousel_figure_num ;
     //  商品分类一级
-    public String first_category_name ;
+    public List<String> first_category_name ;
     //  商品分类二级
-    public String secondary_category_name ;
+    public List<String> secondary_category_name ;
     //  商品短标题
     public String short_name;
     //  商品分组
-//    public String group ;
-    public String group ;
+    public List<String> group ;
     //  商品支持
-    public String label ;
+    public List<String> label ;
     //  价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存
     //  商品规格
     public String good_specification ;
@@ -61,35 +60,35 @@ public class GoodsOnSale implements Serializable {
     //  商品条形码
     public String product_sn ;
     //  商品详情显示库存，显示或隐藏
-    public String stock_hide ;
+    public List<String> stock_hide ;
     //  已出售数
     public int virtual_sales ;
     //  商品详情显示销量，显示或隐藏
-    public String sales_hide ;
+    public List<String> sales_hide ;
     //  物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置
     //  物流支持，快递发货、同城配送、上门自提
-    public String dispatch_mode ;
+    public List<String> dispatch_mode ;
     //  快递运费，“统一运费”或者“运费模板”
-    public String express_price ;
+    public List<String> express_price ;
     //  运费模板，取自数据库
-    public String express_template ;
+    public List<String> express_template ;
     //  其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置
     //  定时下架
     public String auto_warehouse_time ;
     //  状态，上架售卖、上架隐藏、定时上架、放置仓库
-    public String status ;
+    public List<String> status ;
     //  开启限购，是或否
-    public String is_buy_num_limit ;
+    public List<String> is_buy_num_limit ;
     //  起购数量
     public int min_buy ;
     //  每人限购数量
     public int max_buy_total ;
     //  浏览权限
-    public String browse_authority ;
+    public List<String> browse_authority ;
     //  购买权限
-    public String buy_authority ;
+    public List<String> buy_authority ;
     //  参与会员权益，会员卡、会员价、会员等级折扣
-    public String join_member_discount ;
+    public List<String> join_member_discount ;
     //  商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情
     //  推广图文件名
     public String promotion_diagram_name ;
@@ -114,18 +113,18 @@ public class GoodsOnSale implements Serializable {
     public String activity_channel ;
     //  规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置
     //  规则1活动对象，全部会员、会员等级、会员标签
-    public String activity_object ;
+    public List<String> activity_object ;
     //  规则1会员等级
-    public String member_degree ;
+    public List<String> member_degree ;
     //  规则1最大积分抵扣
     public int credit ;
     //  规则1允许多件累计抵扣
-    public String allow_accumulate ;
+    public List<String> allow_accumulate ;
 
-    public GoodsOnSale() {
+    public GoodsOnSaleRelated() {
     }
 
-    public GoodsOnSale(int shop_id, String spec_type, String issue, String product_type, String product_name, String sub_product_name, int main_picture_num, int carousel_figure_num, String first_category_name, String secondary_category_name, String short_name, String group, String label, String good_specification, String peck_gift_good_code, String product_spec, String product_spec_item, int spec_picture__num, float selling_price, float original_price, float cost_price, int stock, int stock_warning, String product_code, String product_sn, String stock_hide, int virtual_sales, String sales_hide, String dispatch_mode, String express_price, String express_template, String auto_warehouse_time, String status, String is_buy_num_limit, int min_buy, int max_buy_total, String browse_authority, String buy_authority, String join_member_discount, String promotion_diagram_name, String promotion_diagram_link, String promotion_diagram_degree, int detailed_diagram_num, String authorize_diagram_name, String common_diagram_name, String activity_name, String activity_start_time, String activity_end_time, String activity_channel, String activity_object, String member_degree, int credit, String allow_accumulate) {
+    public GoodsOnSaleRelated(int shop_id, String spec_type, String issue, String product_type, String product_name, String sub_product_name, int main_picture_num, int carousel_figure_num, List<String> first_category_name, List<String> secondary_category_name, String short_name, List<String> group, List<String> label, String good_specification, String peck_gift_good_code, String product_spec, String product_spec_item, int spec_picture__num, float selling_price, float original_price, float cost_price, int stock, int stock_warning, String product_code, String product_sn, List<String> stock_hide, int virtual_sales, List<String> sales_hide, List<String> dispatch_mode, List<String> express_price, List<String> express_template, String auto_warehouse_time, List<String> status, List<String> is_buy_num_limit, int min_buy, int max_buy_total, List<String> browse_authority, List<String> buy_authority, List<String> join_member_discount, String promotion_diagram_name, String promotion_diagram_link, String promotion_diagram_degree, int detailed_diagram_num, String authorize_diagram_name, String common_diagram_name, String activity_name, String activity_start_time, String activity_end_time, String activity_channel, List<String> activity_object, List<String> member_degree, int credit, List<String> allow_accumulate) {
         this.shop_id = shop_id;
         this.spec_type = spec_type;
         this.issue = issue;
@@ -245,19 +244,19 @@ public class GoodsOnSale implements Serializable {
         this.carousel_figure_num = carousel_figure_num;
     }
 
-    public String getFirst_category_name() {
+    public List<String> getFirst_category_name() {
         return first_category_name;
     }
 
-    public void setFirst_category_name(String first_category_name) {
+    public void setFirst_category_name(List<String> first_category_name) {
         this.first_category_name = first_category_name;
     }
 
-    public String getSecondary_category_name() {
+    public List<String> getSecondary_category_name() {
         return secondary_category_name;
     }
 
-    public void setSecondary_category_name(String secondary_category_name) {
+    public void setSecondary_category_name(List<String> secondary_category_name) {
         this.secondary_category_name = secondary_category_name;
     }
 
@@ -269,19 +268,19 @@ public class GoodsOnSale implements Serializable {
         this.short_name = short_name;
     }
 
-    public String getGroup() {
+    public List<String> getGroup() {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(List<String> group) {
         this.group = group;
     }
 
-    public String getLabel() {
+    public List<String> getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(List<String> label) {
         this.label = label;
     }
 
@@ -381,11 +380,11 @@ public class GoodsOnSale implements Serializable {
         this.product_sn = product_sn;
     }
 
-    public String getStock_hide() {
+    public List<String> getStock_hide() {
         return stock_hide;
     }
 
-    public void setStock_hide(String stock_hide) {
+    public void setStock_hide(List<String> stock_hide) {
         this.stock_hide = stock_hide;
     }
 
@@ -397,35 +396,35 @@ public class GoodsOnSale implements Serializable {
         this.virtual_sales = virtual_sales;
     }
 
-    public String getSales_hide() {
+    public List<String> getSales_hide() {
         return sales_hide;
     }
 
-    public void setSales_hide(String sales_hide) {
+    public void setSales_hide(List<String> sales_hide) {
         this.sales_hide = sales_hide;
     }
 
-    public String getDispatch_mode() {
+    public List<String> getDispatch_mode() {
         return dispatch_mode;
     }
 
-    public void setDispatch_mode(String dispatch_mode) {
+    public void setDispatch_mode(List<String> dispatch_mode) {
         this.dispatch_mode = dispatch_mode;
     }
 
-    public String getExpress_price() {
+    public List<String> getExpress_price() {
         return express_price;
     }
 
-    public void setExpress_price(String express_price) {
+    public void setExpress_price(List<String> express_price) {
         this.express_price = express_price;
     }
 
-    public String getExpress_template() {
+    public List<String> getExpress_template() {
         return express_template;
     }
 
-    public void setExpress_template(String express_template) {
+    public void setExpress_template(List<String> express_template) {
         this.express_template = express_template;
     }
 
@@ -437,19 +436,19 @@ public class GoodsOnSale implements Serializable {
         this.auto_warehouse_time = auto_warehouse_time;
     }
 
-    public String getStatus() {
+    public List<String> getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(List<String> status) {
         this.status = status;
     }
 
-    public String getIs_buy_num_limit() {
+    public List<String> getIs_buy_num_limit() {
         return is_buy_num_limit;
     }
 
-    public void setIs_buy_num_limit(String is_buy_num_limit) {
+    public void setIs_buy_num_limit(List<String> is_buy_num_limit) {
         this.is_buy_num_limit = is_buy_num_limit;
     }
 
@@ -469,27 +468,27 @@ public class GoodsOnSale implements Serializable {
         this.max_buy_total = max_buy_total;
     }
 
-    public String getBrowse_authority() {
+    public List<String> getBrowse_authority() {
         return browse_authority;
     }
 
-    public void setBrowse_authority(String browse_authority) {
+    public void setBrowse_authority(List<String> browse_authority) {
         this.browse_authority = browse_authority;
     }
 
-    public String getBuy_authority() {
+    public List<String> getBuy_authority() {
         return buy_authority;
     }
 
-    public void setBuy_authority(String buy_authority) {
+    public void setBuy_authority(List<String> buy_authority) {
         this.buy_authority = buy_authority;
     }
 
-    public String getJoin_member_discount() {
+    public List<String> getJoin_member_discount() {
         return join_member_discount;
     }
 
-    public void setJoin_member_discount(String join_member_discount) {
+    public void setJoin_member_discount(List<String> join_member_discount) {
         this.join_member_discount = join_member_discount;
     }
 
@@ -573,19 +572,19 @@ public class GoodsOnSale implements Serializable {
         this.activity_channel = activity_channel;
     }
 
-    public String getActivity_object() {
+    public List<String> getActivity_object() {
         return activity_object;
     }
 
-    public void setActivity_object(String activity_object) {
+    public void setActivity_object(List<String> activity_object) {
         this.activity_object = activity_object;
     }
 
-    public String getMember_degree() {
+    public List<String> getMember_degree() {
         return member_degree;
     }
 
-    public void setMember_degree(String member_degree) {
+    public void setMember_degree(List<String> member_degree) {
         this.member_degree = member_degree;
     }
 
@@ -597,17 +596,17 @@ public class GoodsOnSale implements Serializable {
         this.credit = credit;
     }
 
-    public String getAllow_accumulate() {
+    public List<String> getAllow_accumulate() {
         return allow_accumulate;
     }
 
-    public void setAllow_accumulate(String allow_accumulate) {
+    public void setAllow_accumulate(List<String> allow_accumulate) {
         this.allow_accumulate = allow_accumulate;
     }
 
     @Override
     public String toString() {
-        return "GoodsOnSale{" +
+        return "GoodsOnSaleRelated{" +
                 "shop_id=" + shop_id +
                 ", spec_type='" + spec_type + '\'' +
                 ", issue='" + issue + '\'' +
@@ -616,11 +615,11 @@ public class GoodsOnSale implements Serializable {
                 ", sub_product_name='" + sub_product_name + '\'' +
                 ", main_picture_num=" + main_picture_num +
                 ", carousel_figure_num=" + carousel_figure_num +
-                ", first_category_name='" + first_category_name + '\'' +
-                ", secondary_category_name='" + secondary_category_name + '\'' +
+                ", first_category_name=" + first_category_name +
+                ", secondary_category_name=" + secondary_category_name +
                 ", short_name='" + short_name + '\'' +
-                ", group='" + group + '\'' +
-                ", label='" + label + '\'' +
+                ", group=" + group +
+                ", label=" + label +
                 ", good_specification='" + good_specification + '\'' +
                 ", peck_gift_good_code='" + peck_gift_good_code + '\'' +
                 ", product_spec='" + product_spec + '\'' +
@@ -633,20 +632,20 @@ public class GoodsOnSale implements Serializable {
                 ", stock_warning=" + stock_warning +
                 ", product_code='" + product_code + '\'' +
                 ", product_sn='" + product_sn + '\'' +
-                ", stock_hide='" + stock_hide + '\'' +
+                ", stock_hide=" + stock_hide +
                 ", virtual_sales=" + virtual_sales +
-                ", sales_hide='" + sales_hide + '\'' +
-                ", dispatch_mode='" + dispatch_mode + '\'' +
-                ", express_price='" + express_price + '\'' +
-                ", express_template='" + express_template + '\'' +
+                ", sales_hide=" + sales_hide +
+                ", dispatch_mode=" + dispatch_mode +
+                ", express_price=" + express_price +
+                ", express_template=" + express_template +
                 ", auto_warehouse_time='" + auto_warehouse_time + '\'' +
-                ", status='" + status + '\'' +
-                ", is_buy_num_limit='" + is_buy_num_limit + '\'' +
+                ", status=" + status +
+                ", is_buy_num_limit=" + is_buy_num_limit +
                 ", min_buy=" + min_buy +
                 ", max_buy_total=" + max_buy_total +
-                ", browse_authority='" + browse_authority + '\'' +
-                ", buy_authority='" + buy_authority + '\'' +
-                ", join_member_discount='" + join_member_discount + '\'' +
+                ", browse_authority=" + browse_authority +
+                ", buy_authority=" + buy_authority +
+                ", join_member_discount=" + join_member_discount +
                 ", promotion_diagram_name='" + promotion_diagram_name + '\'' +
                 ", promotion_diagram_link='" + promotion_diagram_link + '\'' +
                 ", promotion_diagram_degree='" + promotion_diagram_degree + '\'' +
@@ -657,10 +656,10 @@ public class GoodsOnSale implements Serializable {
                 ", activity_start_time='" + activity_start_time + '\'' +
                 ", activity_end_time='" + activity_end_time + '\'' +
                 ", activity_channel='" + activity_channel + '\'' +
-                ", activity_object='" + activity_object + '\'' +
-                ", member_degree='" + member_degree + '\'' +
+                ", activity_object=" + activity_object +
+                ", member_degree=" + member_degree +
                 ", credit=" + credit +
-                ", allow_accumulate='" + allow_accumulate + '\'' +
+                ", allow_accumulate=" + allow_accumulate +
                 '}';
     }
 }

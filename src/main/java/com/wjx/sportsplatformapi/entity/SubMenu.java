@@ -1,12 +1,14 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2020/10/27 下午3:42
  */
 //  分支导航
-public class SubMenu {
+public class SubMenu implements Serializable {
 
     private int id;
     private String title;

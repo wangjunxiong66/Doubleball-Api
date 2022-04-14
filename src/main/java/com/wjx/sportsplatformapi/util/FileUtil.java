@@ -120,7 +120,8 @@ public class FileUtil {
     }
 
     //  将商品信息写入excel文件
-    public void writeGoodsInfoToExcel(GoodsOnSale goodsOnSale, String srcExcelPath){
+    public String writeGoodsInfoToExcel(GoodsOnSale goodsOnSale, String srcExcelPath){
+        System.out.println("进入 FileUtil --》 writeGoodsInfoToExcel");
             File excel = new File(srcExcelPath);
             if (excel.isFile() && excel.exists()) { //判断文件是否存在
                 String[] split = excel.getName().split("\\."); //   "."是特殊字符，需要转义，最终得到了名字storage-rack-goods.xlsx的字符数组
@@ -138,7 +139,7 @@ public class FileUtil {
                         wb = new XSSFWorkbook(excel);
                     } else {
                         System.out.println("文件类型错误!");
-                        return;
+                        return "Error";
                     }
 
                     Sheet sheet = wb.getSheetAt(0);   // 可以通过名称获得sheet页，例如getSheet("学生信息")，也可以通过下标得到getSheetAt(0)
@@ -209,7 +210,7 @@ public class FileUtil {
                     //    在结果目标中设置文件位置的路径。必须在目标路径中设置，要是在源码中设置，就会提示有代码访问该文件，也是因为访问时访问的是目标路径中的资源
                     String relativepath = ClassUtils.getDefaultClassLoader().getResource("file").getPath() ;
                     System.out.println("relativepath 是  "+relativepath);
-                    String desExcel = relativepath + "\\storage-rack-goods-on-shelve.xlsx";  // 最终文件绝对路径
+                    String desExcel = relativepath + "/storage-rack-goods-on-shelve.xlsx";  // 最终文件绝对路径
 
                     FileOutputStream fout = new FileOutputStream(desExcel);
                     wb.write(fout);
@@ -220,9 +221,10 @@ public class FileUtil {
                 }
             } else{
                 System.out.println("文件不存在!");
-                return;
+                return "Error";
             }
+            return "OK";
     }
 
 
-        }
+}

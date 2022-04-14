@@ -1,11 +1,13 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2021/6/4 下午5:15
  */
-public class BallNameValue {
+public class BallNameValue implements Serializable {
     private int value;
     private String name;
 

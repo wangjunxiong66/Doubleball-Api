@@ -1,11 +1,13 @@
 package com.wjx.sportsplatformapi.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wjx
  * @version 1.0
  * @date 2020/11/2 上午11:33
  */
-public class QueryInfo {
+public class QueryInfo implements Serializable {
 
     private String query ;    //  查询信息的关键字
     private int pageNum = 1 ;     //  当前页
