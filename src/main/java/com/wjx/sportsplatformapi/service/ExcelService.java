@@ -6,10 +6,14 @@ import com.wjx.sportsplatformapi.entity.BasicInfo;
 import com.wjx.sportsplatformapi.entity.GoodsOnSale;
 import com.wjx.sportsplatformapi.entity.GoodsOnSaleRelated;
 import com.wjx.sportsplatformapi.entity.ProductInfo;
+import com.wjx.sportsplatformapi.util.CheckTools;
 import com.wjx.sportsplatformapi.util.FileUtil;
 import com.wjx.sportsplatformapi.util.TimeUtil;
+import org.apache.tomcat.util.buf.StringUtils;
+import org.apache.commons.math3.util.* ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,133 +35,59 @@ public class ExcelService {
     //  将页面指定信息写入Excel
     public String writeToExcel(GoodsOnSale goodsOnSale){
 
-//        String productcode = "0002-007099-02";
-//        //  查询指定商品编码的商品信息
-//        System.out.println("查询的商品编码是: " + productcode);
-//
-//        ProductInfo productInfo = excelDao.getProductInfoByProductCode(productcode);
-//
-//        System.out.println("获取的对象是 " + productInfo.toString());
-//
-//        TimeUtil timeUtil = new TimeUtil();
-//
-//        //  设置商品基本信息
-//        //  店铺ID
-//        int shop_id = 8;
-//        //  规格类型
-//        String spec_type = "多规格";
-//        //  上架用序号
-//        String issue = "20220319001";
-//        //  商品类型
-//        String product_type = "实体商品";
-//        //  商品名称
-//        String product_name = productInfo.getProduct_name();
-//        //  商品副标题
-//        String sub_product_name = productInfo.getProduct_name();
-//        //  商品主图张数
-//        int main_picture_num = 1;
-//        //  商品轮播图张数
-//        int carousel_figure_num = 2;
-//        //  商品分类一级
-//        // String first_category_name = productInfo.getFirst_category_name();
-//        String first_category_name = "首饰名表";
-//        //  商品分类二级
-//        // String secondary_category_name = productInfo.getSecondary_category_name();
-//        String secondary_category_name = "珠宝玉石";
-//        //  商品短标题，截取商品名称前16位
-//        String short_name;
-//        if (productInfo.getProduct_name().length() <= 16) {
-//            short_name = productInfo.getProduct_name().trim();
-//        } else {
-//            short_name = productInfo.getProduct_name().trim().substring(0, 15);
-//        }
-//
-//        //  商品分组
-//        String group = "小额消耗品";
-//        //  商品支持
-//        String label = "质量问题包赔";
-//        //  商品规格
-//        String good_specification = "多规格商品";
-//        //  礼包内商品编码
-//        String peck_gift_good_code = "0002-007083-01";
-//        //  规格
-//        String product_spec = "形状";
-//        //  子规格
-//        String product_spec_item = "方形";
-//        //  规格图张数
-//        int spec_picture__num = 1;
-//        //  售卖价格
-//        float selling_price = 200;
-//        //  划线价
-//        float original_price = 250;
-//        //  成本价
-//        float cost_price = 300;
-//        //  库存量
-//        int stock = productInfo.getStock();
-//        //  库存预警
-//        int stock_warning = 10;
-//        //  商品编码
-//        String product_code = productInfo.getProduct_code();
-//        //  商品条形码
-//        String product_sn = productInfo.getProduct_code().replaceAll("-", "");
-//        //  商品详情显示库存，显示或隐藏
-//        String stock_hide = "显示";
-//        //  已出售数
-//        int virtual_sales = 20;
-//        //  商品详情显示销量，显示或隐藏
-//        String sales_hide = "隐藏";
-//        //  物流支持，快递发货、同城配送、上门自提
-//        String dispatch_mode = "快递发货";
-//        //  快递运费，“统一运费”或者“运费模板”
-//        String express_price = "统一运费";
-//        //  运费模板，取自数据库
-//        String express_template = "10";
-////        String express_template1 = "全国一件包邮运费模板";
-//        //  定时下架
-//        String auto_warehouse_time = timeUtil.DayLater(100) + " 23:59:59";
-//        //  状态，上架售卖、上架隐藏、定时上架、放置仓库
-//        String status = "上架售卖";
-//        //  开启限购，是或否
-//        String is_buy_num_limit = "是";
-//        //  起购数量
-//        int min_buy = 2;
-//        //  每人限购数量
-//        int max_buy_total = 100;
-//        //  浏览权限
-//        String browse_authority = "会员";
-//        //  购买权限
-//        String buy_authority = "VIP会员";
-//        //  参与会员权益，会员卡、会员价、会员等级折扣
-//        String join_member_discount = "会员价";
-//        //  推广图文件名
-//        String promotion_diagram_name = "tgt1.png,tgt2.png";
-//        //  推广图链接
-//        String promotion_diagram_link = "http://www.baidu.com";
-//        //  推广图会员等级是否展示
-//        String promotion_diagram_degree = "会员";
-//        //  商品详情图张数
-//        int detailed_diagram_num = 2;
-//        //  授权图文件名
-//        String authorize_diagram_name = "sqt1.jpg,sqt2.jpg";
-//        //  公用图文件名
-//        String common_diagram_name = "gyt1.png,gyt2.png";
-//        //  活动名称
-//        String acitvity_name = "活动" + System.currentTimeMillis();
-//        //  活动开始时间
-//        String acitvity_start_time = timeUtil.CurrentTime();
-//        //  活动结束时间
-//        String acitvity_end_time = timeUtil.DayLater(200) + " 23:59:59";
-//        //  活动渠道
-//        String acitvity_channel = "H5";
-//        //  规则1活动对象，全部会员、会员等级、会员标签
-//        String activity_object = "会员等级";
-//        //  规则1会员等级
-//        String member_degree = "普通会员";
-//        //  规则1最大积分抵扣
-//        int credit = 100;
-//        //  规则1允许多件累计抵扣
-//        String allow_accumulate = "是";
-//
+        //  获取一级分类和二级分类的id，然后通过id获取对应的名称
+        int first_category_id = Integer.parseInt(goodsOnSale.getFirst_category_name());
+        int secondary_category_id = Integer.parseInt(goodsOnSale.getSecondary_category_name());
+        System.out.println("first_category_id "+first_category_id+"      secondary_category_id "+secondary_category_id);
+
+        List<BasicInfo> first_category_name_list = new ArrayList<>();
+        first_category_name_list = excelDao.getFirstCategoryNameByShopidAndLevel(8,1);
+        for (int i=0;i<first_category_name_list.size();i++){
+            BasicInfo basicInfo = new BasicInfo();
+            basicInfo = first_category_name_list.get(i);
+            if (basicInfo.getId()==first_category_id){
+                goodsOnSale.setFirst_category_name(basicInfo.getName());
+            }
+        }
+
+        List<BasicInfo> Secondary_category_name_list = new ArrayList<>();
+        Secondary_category_name_list = excelDao.getCategoryNameByShopidAndParentid(8,first_category_id);
+        for (int i=0;i<Secondary_category_name_list.size();i++){
+            BasicInfo basicInfo = new BasicInfo();
+            basicInfo = Secondary_category_name_list.get(i);
+            if (basicInfo.getId()==secondary_category_id){
+                goodsOnSale.setSecondary_category_name(basicInfo.getName());
+            }
+        }
+
+        //  获取分组的id，然后通过id获取对应的名称
+        String group_temp = goodsOnSale.getGroup();
+        String[] group_arr = group_temp.split(",");
+        int[] group_array = new int[group_arr.length] ;
+        for (int i=0;i<group_arr.length;i++)              //把group_arr中的数据进行类型转换并存入到int数组中
+        {
+            int num = Integer.parseInt(group_arr[i]);
+            group_array[i] = num ;
+        }
+        String[] group_list = new String[group_arr.length];
+        for (int i=0;i<group_array.length;i++){
+            group_list[i] = excelDao.getGroupByShopIdAndId(8,group_array[i]);
+        }
+        group_temp = StringUtils.join(group_list);
+        System.out.println("group_temp  "+group_temp);
+        goodsOnSale.setGroup(group_temp);
+
+        //  获取"商品详情显示库存"的id，然后通过id获取对应的名称
+        if (CheckTools.isNumeric(goodsOnSale.getStock_hide())){
+            int stock_hide_num = Integer.parseInt(goodsOnSale.getStock_hide());
+            if (stock_hide_num==1){
+                goodsOnSale.setStock_hide("隐藏");
+            } else if (stock_hide_num==0){
+                goodsOnSale.setStock_hide("显示");
+            }
+        }
+
+
         //当前项目路径
         File file = new File("");
         String filePath = null;
@@ -260,6 +190,7 @@ public class ExcelService {
 
     //  将商品信息返回页面
     public String goodsRelated(){
+        System.out.println("进入 ExcelService -- goodsRelated 方法");
         //  获得商品编码
         List<String> product_code_list = new ArrayList<>();
         product_code_list = excelDao.getProductCodeBySuppliersn("0002");
@@ -278,7 +209,7 @@ public class ExcelService {
 
         //  获得商品分组
         List<String> group_list = new ArrayList<>();
-        group_list = excelDao.getGroupByShopId("8");
+        group_list = excelDao.getGroupByShopId(8);
         List<BasicInfo> group = new ArrayList<>();
         //  将商品分组进行转换，在前端页面进行操作
         for (int i=0;i<group_list.size();i++){
@@ -289,17 +220,42 @@ public class ExcelService {
             group.add(basicInfo);
         }
 
-        for (int j=0;j<group.size();j++){
-            System.out.println(group.get(j).getId()+"   "+group.get(j).getName());
+        //  获得商品一级分类
+        List<BasicInfo> first_category_name = new ArrayList<>();
+        first_category_name = excelDao.getFirstCategoryNameByShopidAndLevel(8,1);
+        for (int i=0;i<first_category_name.size();i++){
+            BasicInfo basicInfo = new BasicInfo();
+            basicInfo = first_category_name.get(i);
+            System.out.println("第 "+i+" 个一级分类是：  "+basicInfo.getId()+"     "+basicInfo.getName());
         }
 
         //  将商品信息加到返回信息中
         HashMap<String,Object> res = new HashMap<>();
         res.put("product_code",product_code);       //  将商品编码加到返回信息中
         res.put("group",group);                  //  将商品分组加到返回信息中
+        res.put("first_category_name",first_category_name);                  //  将商品一级分类加到返回信息中
         String res_json = JSON.toJSONString(res);
         System.out.println("res_json 是 "+res_json);
         return res_json;
     }
 
+    //  获取指定分类下的子分类
+    public String getNextCategory(Integer parent_id){
+
+        System.out.println("进入 ExcelService -- getNextCategory 方法 , 参数是  "+parent_id);
+        List<BasicInfo> next_category_name = new ArrayList<>();
+        next_category_name = excelDao.getCategoryNameByShopidAndParentid(8,parent_id);
+        for (int i=0;i<next_category_name.size();i++){
+            BasicInfo basicInfo = new BasicInfo();
+            basicInfo = next_category_name.get(i);
+            System.out.println("第 "+i+" 个二级分类是：  "+basicInfo.getId()+"     "+basicInfo.getName());
+        }
+
+        //  将商品信息加到返回信息中
+        HashMap<String,Object> res = new HashMap<>();
+        res.put("secondary_category_name",next_category_name);                  //  将商品二级分类加到返回信息中
+        String res_json = JSON.toJSONString(res);
+        System.out.println("res_json 是 "+res_json);
+        return res_json;
+    }
 }

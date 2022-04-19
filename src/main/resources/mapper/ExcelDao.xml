@@ -10,15 +10,29 @@
 
     <select id="getProductInfoByProductCode" parameterType="String" resultType="com.wjx.sportsplatformapi.entity.ProductInfo">
         <include refid="selectProductInfo"/>
-        where product_code = #{product_code}
+        where product_code = #{product_code,jdbcType=VARCHAR}
     </select>
 
     <select id="getProductCodeBySuppliersn" parameterType="String" resultType="String">
-        select product_code from product_info where supplier_sn = #{supplier_sn}
+        select product_code from product_info where supplier_sn = #{supplier_sn,jdbcType=VARCHAR}
     </select>
 
-    <select id="getGroupByShopId" parameterType="String" resultType="String">
-        select name from es_shop_goods_group where shop_id = #{shop_id}
+    <select id="getGroupByShopId" resultType="String">
+        select name from es_shop_goods_group where shop_id = #{shop_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getGroupByShopIdAndId" resultType="String">
+        select name from es_shop_goods_group where shop_id = #{shop_id,jdbcType=INTEGER} and id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--<select id="getFirstCategoryNameByShopidAndLevel" parameterType="int" resultType="com.wjx.sportsplatformapi.entity.BasicInfo">-->
+    <select id="getFirstCategoryNameByShopidAndLevel" resultType="com.wjx.sportsplatformapi.entity.BasicInfo">
+        select id,name from es_shop_goods_category where shop_id = #{shop_id,jdbcType=INTEGER} and level = #{level,jdbcType=INTEGER}
+    </select>
+
+    <!--<select id="getCategoryNameByShopidAndParentid" parameterType="int" resultType="com.wjx.sportsplatformapi.entity.BasicInfo">-->
+    <select id="getCategoryNameByShopidAndParentid" resultType="com.wjx.sportsplatformapi.entity.BasicInfo">
+        select id,name from es_shop_goods_category where shop_id = #{shop_id,jdbcType=INTEGER} and parent_id = #{parent_id,jdbcType=INTEGER}
     </select>
 
 </mapper>

@@ -28,7 +28,7 @@ public class ExcelOperationController {
     @PostMapping("/writeto")
     public String tableTo(@RequestBody GoodsOnSale goodsOnSale){
         System.out.println("goodsOnSale 信息是  "+goodsOnSale.toString());
-        ExcelService excelService = new ExcelService();
+//        ExcelService excelService = new ExcelService();
         String res = excelService.writeToExcel(goodsOnSale) ;
         return res;
 
@@ -253,13 +253,20 @@ public class ExcelOperationController {
 //
 //    }
 
-
+    //  进入商品导入excel页面时需要加载的商品相关信息
     @GetMapping("/loading")
-    public String test(){
+    public String loadInfo(){
         String data = excelService.goodsRelated();
 //        System.out.println(data);
         return data ;
     }
 
+    //
+    @GetMapping("/getnextcategory")
+    public String getNextCategory(Integer parent_id){
+        System.out.println("parent_id "+parent_id );
+        String data = excelService.getNextCategory(parent_id);
+        return data ;
+    }
 
 }
