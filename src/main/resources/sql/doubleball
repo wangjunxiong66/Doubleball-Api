@@ -2977,7 +2977,8 @@ insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_t
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22039', '2', '6', '7', '10', '15', '20', '5', '2022-04-10');
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22040', '3', '12', '14', '16', '31', '33', '12', '2022-04-12');
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22041', '5', '7', '21', '22', '24', '29', '14', '2022-04-14');
-
+insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22042', '5', '10', '11', '21', '22', '30', '13', '2022-04-17');
+insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22043', '2', '17', '20', '23', '25', '27', '8', '2022-04-19');
 
 
 DROP TABLE IF EXISTS `doubleballcalculate` ;
