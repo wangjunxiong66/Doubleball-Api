@@ -1,11 +1,11 @@
 package com.wjx.sportsplatformapi.util;
 
+import com.alibaba.fastjson.JSON;
 import com.wjx.sportsplatformapi.entity.GoodsOnSale;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.util.ClassUtils;
 
@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class FileUtil {
 
@@ -88,7 +92,7 @@ public class FileUtil {
                     wb = new XSSFWorkbook(excel);
                 } else {
                     System.out.println("文件类型错误!");
-                    return;
+                    return ;
                 }
 
                 // 读取Excel文件，开始解析
@@ -117,6 +121,135 @@ public class FileUtil {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //  读取excel文件内容并返回到页面
+    public List<GoodsOnSale> readExcelContent(String fielPath){
+        System.out.println("进到FileUtil类-->readExcel方法");
+        List<GoodsOnSale> goodsOnSales_list = new ArrayList<>();
+
+        try {
+            File excel = new File(fielPath);
+            if (excel.isFile() && excel.exists()) { //判断文件是否存在
+                String[] split = excel.getName().split("\\."); //   "."是特殊字符，需要转义，最终得到了名字storage-rack-goods.xlsx的字符数组
+                for (int i = 0; i < split.length; i++) {
+                    System.out.println("split[" + i + "]      " + split[i]);
+                }
+                Workbook wb;
+                //根据文件后缀(xls/xlsx)进行判断
+                FileInputStream fis = new FileInputStream(excel); // 文件流对象
+                if ("x1s".equals(split[1])) {
+//                    FileInputStream fis = new FileInputStream(excel); // 文件流对象
+                    wb = new HSSFWorkbook(fis);
+                } else if ("xlsx".equals(split[1])) {
+                    wb = new XSSFWorkbook(excel);
+                } else {
+                    System.out.println("文件类型错误!");
+                    GoodsOnSale goodsOnSale = new GoodsOnSale();
+                    goodsOnSale = null;
+                    goodsOnSales_list.add(goodsOnSale);
+                    return goodsOnSales_list ;
+                }
+
+                // 读取Excel文件，开始解析
+                Sheet sheet = wb.getSheetAt(0);     //读取sheet 0
+                int firstRowIndex = sheet.getFirstRowNum()+3;     // 获取实际行的第一行，如果前几行是列名，可以加上指定行数略过不读，例如 sheet.getFirstRowNum()+3
+                int lastRowIndex = sheet.getLastRowNum();   // 获取实际行的最后一行
+                System.out.println("firstRowIndex: " + firstRowIndex);
+                System.out.println("lastRowIndex: " + lastRowIndex);
+                for (int rIndex = firstRowIndex; rIndex <= lastRowIndex; rIndex++) { //遍历行
+                    GoodsOnSale goodsOnSale = new GoodsOnSale();
+                    System.out.println("rIndex: " + rIndex);
+                    Row row = sheet.getRow(rIndex);   // 获取指定行
+                    if (row != null) {
+                        int firstCellIndex = row.getFirstCellNum();  // 获取指定行的第一个实际单元格
+                        int lastCellIndex = row.getLastCellNum();   // 获取指定行的最后一个实际单元格
+                        for (int cIndex = firstCellIndex; cIndex < lastCellIndex; cIndex++) { // 遍历列
+                            System.out.println("cIndex = "+cIndex);
+                            Cell cell = row.getCell(cIndex);    // 获取指定行的指定单元格
+                            if (cell != null) {
+                                String cell_content = getCellValue(cell);
+                                System.out.println("cell_content   "+cell_content);
+                                System.out.println("cell.getCellType()    "+cell.getCellType());
+
+                                switch (cIndex){
+                                    case 0: goodsOnSale.setShop_id(Double.valueOf(cell_content).intValue()); break;
+                                    case 1: goodsOnSale.setSpec_type(cell_content); break;
+                                    case 2: goodsOnSale.setIssue(cell_content); break;
+                                    case 3: goodsOnSale.setProduct_type(cell_content); break;
+                                    case 4: goodsOnSale.setProduct_name(cell_content); break;
+                                    case 5: goodsOnSale.setSub_product_name(cell_content); break;
+                                    case 6: goodsOnSale.setMain_picture_num(Double.valueOf(cell_content).intValue()); break;
+                                    case 7: goodsOnSale.setCarousel_figure_num(Double.valueOf(cell_content).intValue()); break;
+                                    case 8: goodsOnSale.setFirst_category_name(cell_content); break;
+                                    case 9: goodsOnSale.setSecondary_category_name(cell_content); break;
+                                    case 10: goodsOnSale.setShort_name(cell_content); break;
+                                    case 11: goodsOnSale.setGroup(cell_content); break;
+                                    case 12: goodsOnSale.setLabel(cell_content); break;
+                                    case 13: goodsOnSale.setGood_specification(cell_content); break;
+                                    case 14: goodsOnSale.setPeck_gift_good_code(cell_content); break;
+                                    case 15: goodsOnSale.setProduct_spec(cell_content); break;
+                                    case 16: goodsOnSale.setProduct_spec_item(cell_content); break;
+                                    case 17: goodsOnSale.setSpec_picture__num(Double.valueOf(cell_content).intValue()); break;
+                                    case 18: goodsOnSale.setSelling_price(Float.valueOf(cell_content)); break;
+                                    case 19: goodsOnSale.setOriginal_price(Float.valueOf(cell_content)); break;
+                                    case 20: goodsOnSale.setCost_price(Float.parseFloat(cell_content)); break;
+                                    case 21: goodsOnSale.setStock(Double.valueOf(cell_content).intValue()); break;
+                                    case 22: goodsOnSale.setStock_warning(Double.valueOf(cell_content).intValue()); break;
+                                    case 23: goodsOnSale.setProduct_code(cell_content); break;
+                                    case 24: goodsOnSale.setProduct_sn(cell_content); break;
+                                    case 25: goodsOnSale.setStock_hide(cell_content); break;
+                                    case 26: goodsOnSale.setVirtual_sales(Double.valueOf(cell_content).intValue()); break;
+                                    case 27: goodsOnSale.setSales_hide(cell_content); break;
+                                    case 28: goodsOnSale.setDispatch_mode(cell_content); break;
+                                    case 29: goodsOnSale.setExpress_price(cell_content); break;
+                                    case 30: goodsOnSale.setExpress_template(cell_content); break;
+                                    case 31: goodsOnSale.setAuto_warehouse_time(cell_content); break;
+                                    case 32: goodsOnSale.setStatus(cell_content); break;
+                                    case 33: goodsOnSale.setIs_buy_num_limit(cell_content); break;
+                                    case 34: goodsOnSale.setMin_buy(Double.valueOf(cell_content).intValue()); break;
+                                    case 35: goodsOnSale.setMax_buy_total(Double.valueOf(cell_content).intValue()); break;
+                                    case 36: goodsOnSale.setBrowse_authority(cell_content); break;
+                                    case 37: goodsOnSale.setBuy_authority(cell_content); break;
+                                    case 38: goodsOnSale.setJoin_member_discount(cell_content); break;
+                                    case 39: goodsOnSale.setPromotion_diagram_name(cell_content); break;
+                                    case 40: goodsOnSale.setPromotion_diagram_link(cell_content); break;
+                                    case 41: goodsOnSale.setPromotion_diagram_degree(cell_content); break;
+                                    case 42: goodsOnSale.setDetailed_diagram_num(Double.valueOf(cell_content).intValue()); break;
+                                    case 43: goodsOnSale.setAuthorize_diagram_name(cell_content); break;
+                                    case 44: goodsOnSale.setCommon_diagram_name(cell_content); break;
+                                    case 45: goodsOnSale.setActivity_name(cell_content); break;
+                                    case 46: goodsOnSale.setActivity_start_time(cell_content); break;
+                                    case 47: goodsOnSale.setActivity_end_time(cell_content); break;
+                                    case 48: goodsOnSale.setActivity_channel(cell_content); break;
+                                    case 49: goodsOnSale.setActivity_object(cell_content); break;
+                                    case 50: goodsOnSale.setMember_degree(cell_content); break;
+                                    case 51: goodsOnSale.setCredit(Double.valueOf(cell_content).intValue()); break;
+                                    case 52: goodsOnSale.setAllow_accumulate(cell_content); break;
+                                }
+
+                            }
+
+                        }
+                    }
+
+                    goodsOnSales_list.add(goodsOnSale) ;
+
+                }
+
+
+            }else {
+                System.out.println("找不到指定的文件");
+                GoodsOnSale goodsOnSale = new GoodsOnSale();
+                goodsOnSale = null;
+                goodsOnSales_list.add(goodsOnSale);
+                return goodsOnSales_list ;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return goodsOnSales_list  ;
     }
 
     //  将商品信息写入excel文件
@@ -225,6 +358,49 @@ public class FileUtil {
             }
             return "OK";
     }
+
+    //  将cell对象中的值转换成string类型
+    public  String getCellValue(Cell cell) {
+        String strCell = "";
+        if (cell != null) {
+            switch (cell.getCellType()) {
+                case STRING:     // 字符串类型
+                    strCell = cell.getStringCellValue();
+                    break;
+                case BOOLEAN:    // boolean类型
+                    strCell = String.valueOf(cell.getBooleanCellValue());
+                    break;
+                case BLANK:      // 空白类型
+                    strCell = "";
+                    break;
+                case ERROR:      // 错误类型
+                    strCell = "error value!";
+                    break;
+                case NUMERIC:  //数字类型
+                    strCell = String.valueOf(cell.getNumericCellValue());
+                    break;
+                case FORMULA:
+                    if (HSSFDateUtil.isCellDateFormatted(cell)) {// 处理日期格式、时间格式
+                        SimpleDateFormat sdf = null;
+                        //  short dataFormat = cell.getCellStyle().getDataFormat();
+                        sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date date = cell.getDateCellValue();
+                        strCell = sdf.format(date);
+                    }
+                    break;
+                default:
+                    strCell = "";
+                    break;
+            }
+        }
+        if (strCell.equals("") || strCell == null) {
+            strCell = "";
+        }
+        return strCell.trim();
+    }
+
+
+
 
 
 }

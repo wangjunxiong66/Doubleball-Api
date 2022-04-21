@@ -13,6 +13,7 @@ import org.apache.tomcat.util.buf.StringUtils;
 import org.apache.commons.math3.util.* ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.NumberUtils;
 
 import java.io.File;
@@ -229,11 +230,20 @@ public class ExcelService {
             System.out.println("第 "+i+" 个一级分类是：  "+basicInfo.getId()+"     "+basicInfo.getName());
         }
 
+        //  获取指定excel文件内容
+        String relativepath = ClassUtils.getDefaultClassLoader().getResource("file").getPath() ;
+        System.out.println("relativepath 是  "+relativepath);
+        String desExcel = relativepath + "/storage-rack-goods-on-shelve.xlsx";  // 最终文件绝对路径
+        FileUtil fileUtil = new FileUtil();
+        List<GoodsOnSale> excel_content = fileUtil.readExcelContent(desExcel);
+
+
         //  将商品信息加到返回信息中
         HashMap<String,Object> res = new HashMap<>();
         res.put("product_code",product_code);       //  将商品编码加到返回信息中
         res.put("group",group);                  //  将商品分组加到返回信息中
         res.put("first_category_name",first_category_name);                  //  将商品一级分类加到返回信息中
+        res.put("excelForm",excel_content);                         //  将excel中的商品信息返回
         String res_json = JSON.toJSONString(res);
         System.out.println("res_json 是 "+res_json);
         return res_json;
