@@ -13,7 +13,7 @@ import java.util.List;
 public interface ExcelDao {
 
     public ProductInfo getProductInfoByProductCode(@Param("product_code") String product_code);
-    public List<String> getProductCodeBySuppliersn(@Param("supplier_sn") String supplier_sn);
+    public List<BasicInfo> getProductCodeBySuppliersn(@Param("supplier_sn") String supplier_sn);
     public List<String> getGroupByShopId(@Param("shop_id") Integer shop_id);
     public String getGroupByShopIdAndId(@Param("shop_id") Integer shop_id, @Param("id") Integer id);
     public List<BasicInfo> getFirstCategoryNameByShopidAndLevel(@Param("shop_id") Integer shop_id, @Param("level") Integer level);

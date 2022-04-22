@@ -13,8 +13,8 @@
         where product_code = #{product_code,jdbcType=VARCHAR}
     </select>
 
-    <select id="getProductCodeBySuppliersn" parameterType="String" resultType="String">
-        select product_code from product_info where supplier_sn = #{supplier_sn,jdbcType=VARCHAR}
+    <select id="getProductCodeBySuppliersn" parameterType="String" resultType="com.wjx.sportsplatformapi.entity.BasicInfo">
+        select id,product_code as name from product_info where supplier_sn = #{supplier_sn,jdbcType=VARCHAR}
     </select>
 
     <select id="getGroupByShopId" resultType="String">

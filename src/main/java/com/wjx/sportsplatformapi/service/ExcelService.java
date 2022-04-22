@@ -88,6 +88,21 @@ public class ExcelService {
             }
         }
 
+        //  获取"商品编码"的id，然后通过id获取对应的名称
+        if (CheckTools.isNumeric(goodsOnSale.getProduct_code())){
+            int product_code_int = Integer.parseInt(goodsOnSale.getProduct_code());
+            System.out.println("获取的商品编码id是  "+product_code_int);
+
+            List<BasicInfo> product_code_list = new ArrayList<>();
+            product_code_list = excelDao.getProductCodeBySuppliersn("0002");
+            for (int i=0;i<product_code_list.size();i++){
+                System.out.println("第 "+i+" 个商品 id 是 "+product_code_list.get(i).getId()+"  编码是  "+product_code_list.get(i).getName());
+                if (product_code_int==product_code_list.get(i).getId()){
+                    goodsOnSale.setProduct_code(product_code_list.get(i).getName());
+                }
+            }
+        }
+
 
         //当前项目路径
         File file = new File("");
@@ -193,19 +208,10 @@ public class ExcelService {
     public String goodsRelated(){
         System.out.println("进入 ExcelService -- goodsRelated 方法");
         //  获得商品编码
-        List<String> product_code_list = new ArrayList<>();
+        List<BasicInfo> product_code_list = new ArrayList<>();
         product_code_list = excelDao.getProductCodeBySuppliersn("0002");
         for (int i=0;i<product_code_list.size();i++){
-            System.out.println("第 "+i+" 个商品编码是：  "+product_code_list.get(i));
-        }
-        List<BasicInfo> product_code = new ArrayList<>();
-        //  将商品编码进行转换，在前端页面进行操作
-        for (int i=0;i<product_code_list.size();i++){
-            System.out.println("第 "+i+" 个编码是：  "+product_code_list.get(i));
-            BasicInfo basicInfo = new BasicInfo();
-            basicInfo.setId(i+1);
-            basicInfo.setName(product_code_list.get(i));
-            product_code.add(basicInfo);
+            System.out.println("第 "+i+" 个商品 id 是 "+product_code_list.get(i).getId()+"  编码是  "+product_code_list.get(i).getName());
         }
 
         //  获得商品分组
@@ -240,7 +246,7 @@ public class ExcelService {
 
         //  将商品信息加到返回信息中
         HashMap<String,Object> res = new HashMap<>();
-        res.put("product_code",product_code);       //  将商品编码加到返回信息中
+        res.put("product_code",product_code_list);       //  将商品编码加到返回信息中
         res.put("group",group);                  //  将商品分组加到返回信息中
         res.put("first_category_name",first_category_name);                  //  将商品一级分类加到返回信息中
         res.put("excelForm",excel_content);                         //  将excel中的商品信息返回
