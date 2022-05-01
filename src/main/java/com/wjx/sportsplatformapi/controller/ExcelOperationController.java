@@ -7,6 +7,8 @@ import com.wjx.sportsplatformapi.entity.ProductInfo;
 import com.wjx.sportsplatformapi.service.ExcelService;
 import com.wjx.sportsplatformapi.util.FileUtil;
 import com.wjx.sportsplatformapi.util.TimeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import java.util.HashMap;
 @RequestMapping("/excelOP")
 public class ExcelOperationController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelOperationController.class) ;
+
     @Autowired
     ExcelDao excelDao;
 
@@ -27,7 +31,7 @@ public class ExcelOperationController {
 
     @PostMapping("/writeto")
     public String tableTo(@RequestBody GoodsOnSale goodsOnSale){
-        System.out.println("goodsOnSale 信息是  "+goodsOnSale.toString());
+        LOGGER.info("goodsOnSale 信息是 goodsOnSale.getStock()={}   goodsOnSale.toString()={} ",goodsOnSale.getStock(), goodsOnSale.toString());
 //        ExcelService excelService = new ExcelService();
         String res = excelService.writeToExcel(goodsOnSale) ;
         return res;
