@@ -3,6 +3,8 @@ package com.wjx.sportsplatformapi.controller;
 import com.alibaba.fastjson.JSON;
 import com.wjx.sportsplatformapi.dao.MenuDao;
 import com.wjx.sportsplatformapi.entity.MainMenu;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,12 +21,14 @@ import java.util.List;
 @RestController
 public class MenuController {
 
+    public static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
     MenuDao menuDao;
 
     @RequestMapping("/menus")
     public String getAllMenus(){
-        System.out.println("访问home成功");
+        log.info("访问home成功，查询菜单栏");
         HashMap<String,Object> data = new HashMap<>();
         List<MainMenu> menus = menuDao.getMenus();
         if (menus!=null){
@@ -34,6 +38,9 @@ public class MenuController {
             data.put("flag",404);
         }
         String s= JSON.toJSONString(data);
+//        log.info("查询菜单栏结果为："+s);
+        log.info("查询菜单栏结果为 {} .",s);
+
         return s;
     }
 

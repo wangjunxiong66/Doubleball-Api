@@ -42,9 +42,9 @@ CREATE TABLE `submenu` (
   `title` varchar(255) NOT NULL COMMENT '子菜单名称',
   `path` varchar(255) NOT NULL COMMENT '路径',
   `mid` int(50) NOT NULL COMMENT '父路径ID',
-  PRIMARY KEY (`id`),
-  KEY `mid` (`mid`),
-  CONSTRAINT `submenu_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `mainmenu` (`id`)
+  PRIMARY KEY (`id`)
+#  KEY `mid` (`mid`),
+#  CONSTRAINT `submenu_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `mainmenu` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 insert into `sportsplatform`.`submenu` ( `title`, `path`, `mid`) values ( '用户列表', '/user', '100');
@@ -119,10 +119,11 @@ CREATE TABLE `mainmenu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
-insert into `sportsplatform`.`mainmenu` ( `title`, `path`) values ( '权限管理', '/admin');
-insert into `sportsplatform`.`mainmenu` ( `title`, `path`) values ( '诗歌', '/poem');
-insert into `sportsplatform`.`mainmenu` ( `title`, `path`) values ( '双色球', '/doubleball');
-insert into `sportsplatform`.`mainmenu` ( `title`, `path`) values ( '工具', '/tool');
+
+INSERT INTO `sportsplatform`.`mainmenu`(`id`, `title`, `path`) VALUES (100, '权限管理', '/admin');
+INSERT INTO `sportsplatform`.`mainmenu`(`id`, `title`, `path`) VALUES (200, '诗歌', '/poem');
+INSERT INTO `sportsplatform`.`mainmenu`(`id`, `title`, `path`) VALUES (300, '双色球', '/doubleball');
+INSERT INTO `sportsplatform`.`mainmenu`(`id`, `title`, `path`) VALUES (400, '工具', '/tool');
 
 
 
@@ -3000,7 +3001,14 @@ insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_t
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22062', '16', '18', '20', '21', '23', '33', '5', '2022-06-02');
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22063', '6', '8', '9', '17', '22', '31', '11', '2022-06-05');
 insert into `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) values ( '22064', '4', '6', '12', '13', '17', '31', '16', '2022-06-07');
-
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22065', '9', '14', '18', '23', '28', '31', '2', '2022-06-09');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22066', '6', '11', '14', '20', '27', '30', '9', '2022-06-12');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22067', '1', '5', '13', '21', '26', '29', '15', '2022-06-14');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22068', '7', '12', '15', '24', '26', '29', '6', '2022-06-16');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22069', '6', '7', '13', '19', '26', '29', '8', '2022-06-19');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22070', '4', '6', '9', '27', '28', '33', '2', '2022-06-21');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22071', '4', '7', '15', '18', '29', '33', '1', '2022-06-23');
+INSERT INTO `sportsplatform`.`doubleballstatistics` ( `issue`, `red_one`, `red_two`, `red_three`, `red_four`, `red_five`, `red_six`, `blue`, `draw_prize_date`) VALUES ( '22072', '5', '14', '15', '16', '18', '32', '12', '2022-06-26');
 
 
 
