@@ -25,10 +25,8 @@ public class SeleniumController {
     private static final Logger log = LoggerFactory.getLogger(ExcelOperationController.class) ;
 
     @RequestMapping("/mail/login")
-    public String loginMail(@RequestParam(value = "account") String account1, @RequestParam(value = "password") String password1){
-        String account2 = account1 ;
-        String password2 = password1 ;
-        log.info("传入的邮箱账号是： {}  ，传入的邮箱密码是： {}",account2,password2);
+    public String loginMail(@RequestParam(value = "account") String account, @RequestParam(value = "password") String password){
+        log.info("传入的邮箱账号是： {}  ，传入的邮箱密码是： {}",account,password);
 
         System.setProperty("webdriver.chrome.driver","/C:/Program Files/Google/Chrome/Application/chromedriver.exe") ;
         WebDriver driver = new ChromeDriver();
@@ -38,11 +36,11 @@ public class SeleniumController {
         //  找到账号输入框，此处用id、Xpath方式都不可以，只能用name方式查找
         WebElement accountBox = driver.findElement(By.name("email"));
         accountBox.clear();
-        accountBox.sendKeys(account2);
+        accountBox.sendKeys(account);
         //  找到密码输入框，此处用id、Xpath方式都不可以，只能用name方式查找
         WebElement passwordBox = driver.findElement(By.name("password")) ;
         passwordBox.clear();
-        passwordBox.sendKeys(password2);
+        passwordBox.sendKeys(password);
 
         WebElement loginButton = driver.findElement(By.id("dologin")) ;
         log.info("loginbutton:  {}"+loginButton.getText());
