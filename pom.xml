@@ -100,30 +100,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>4.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>4.3.2</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
 		</dependency>
 
         <!--日志-->
@@ -131,6 +112,71 @@
 			<!--<groupId>log4j</groupId>-->
 			<!--<artifactId>log4j</artifactId>-->
 			<!--<version>${log4j.version}</version>-->
+		<!--</dependency>-->
+
+		<!--selenium 测试所需依赖-->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-java</artifactId>
+		<!--<version>2.53.0</version>-->
+		<!--<version>3.141.59</version>-->
+		<!--<version>3.4.0</version>-->
+		<!--<version>3.14.0</version>                                &lt;!&ndash;专为edge浏览器&ndash;&gt;-->
+		<!--<version>4.0.0</version>-->
+		<version>4.8.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
+		<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-firefox-driver</artifactId>
+		<version>4.8.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+		<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-api</artifactId>
+		<!--<version>3.14.0</version>                                &lt;!&ndash;专为edge浏览器&ndash;&gt;-->
+		<!--<version>4.0.0</version>                       &lt;!&ndash; apppium 用此依赖版本 &ndash;&gt;-->
+		<version>4.8.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
+		<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-remote-driver</artifactId>
+		<!--<version>3.14.0</version>                                &lt;!&ndash;专为edge浏览器&ndash;&gt;-->
+		<!--<version>4.0.0</version>-->
+		<version>4.8.0</version>
+		</dependency>
+
+		<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-chrome-driver</artifactId>
+		<!--<version>3.12.0</version>-->
+		<version>4.8.0</version>
+		</dependency>
+
+		<!--appium  测试所需依赖-->
+		<!--<dependency>-->
+			<!--<groupId>io.appium</groupId>-->
+			<!--<artifactId>java-client</artifactId>-->
+			<!--&lt;!&ndash;<version>4.1.2</version>&ndash;&gt;-->
+			<!--<version>6.1.0</version>-->
+			<!--&lt;!&ndash;<version>7.6.0</version>&ndash;&gt;-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.slf4j</groupId>-->
+			<!--<artifactId>slf4j-api</artifactId>-->
+			<!--<version>2.0.6</version>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.slf4j</groupId>-->
+			<!--<artifactId>slf4j-log4j12</artifactId>-->
+			<!--<version>2.0.6</version>-->
 		<!--</dependency>-->
 
 	</dependencies>
