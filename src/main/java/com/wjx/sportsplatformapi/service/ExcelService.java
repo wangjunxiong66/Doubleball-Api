@@ -108,6 +108,7 @@ public class ExcelService {
         File file = new File("");
         String filePath = null;
         try {
+            //  返回抽象路径名的规范路径名字符串。规范路径名是绝对路径名，并且是惟一的。
             filePath = file.getCanonicalPath();
         } catch (IOException e) {
             e.printStackTrace();
@@ -274,4 +275,10 @@ public class ExcelService {
         System.out.println("res_json 是 "+res_json);
         return res_json;
     }
+
+    //  读取指定Excel文件
+    public void displaceExcel(){
+
+    }
+
 }
