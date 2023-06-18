@@ -279,6 +279,26 @@ public class ExcelService {
     //  读取指定Excel文件
     public void displaceExcel(){
 
+        //当前项目路径
+        File file = new File("");
+        String filePath = null;
+        try {
+            //  返回抽象路径名的规范路径名字符串。规范路径名是绝对路径名，并且是惟一的。
+            filePath = file.getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("项目路径  " + filePath);
+
+        //exce1文件路径
+        String excelPath = "/src/main/resources/file/dresse.csv";   // 源文件相对路径
+        String srcExcelPath = filePath + excelPath;        // 源文件绝对路径
+        System.out.println("原 excel 文件路径  " + srcExcelPath);
+
+        FileUtil fileUtil = new FileUtil();
+
+
+
     }
 
 }
